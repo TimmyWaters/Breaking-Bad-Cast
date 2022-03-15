@@ -11,7 +11,8 @@ struct CastDetailView: View {
     var character: Character
     var body: some View {
         VStack{
-            Image(character.img)
+            URLImage(urlString: character.img)
+            //Image(character.img)
             Text(character.name)
         }
     }

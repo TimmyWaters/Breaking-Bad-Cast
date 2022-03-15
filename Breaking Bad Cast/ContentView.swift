@@ -48,7 +48,7 @@ struct ContentView: View {
         NavigationView{
             List{
                 ForEach(viewModel.characters, id: \.self){ character in
-                    NavigationLink(destination: Text(character.name), label:{
+                    NavigationLink(destination: CastDetailView(character: character), label:{
                         HStack{
                             URLImage(urlString: character.img)
                                 .scaledToFit()
