@@ -11,7 +11,7 @@ struct CastDetailView: View {
     var character: Character
     var body: some View {
         VStack(alignment: .leading, spacing: 10){
-            URLImage(urlString: character.img)
+            URLImage(urlString: character.img, temp: "Photo")
                 .frame(width: 300, height: 300)
                 .scaledToFit()
                 .padding()

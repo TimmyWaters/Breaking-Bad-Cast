@@ -18,7 +18,6 @@ struct Character: Hashable, Codable{
 
 class ViewModel: ObservableObject {
     @Published var characters: [Character] = []
-    
     func fetch(){
         guard let url = URL(string: "https://breakingbadapi.com/api/characters") else{
             return

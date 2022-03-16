@@ -9,8 +9,8 @@ import SwiftUI
 
 struct URLImage: View{
     let urlString: String
-    
     @State var data: Data?
+    var temp: String
     
     var body: some View{
         if let data = data, let uiimage = UIImage(data: data){
@@ -43,23 +43,24 @@ struct URLImage: View{
 
 struct ContentView: View {
     @StateObject var viewModel = ViewModel()
-    
+    @State private var searchText = ""
     var body: some View {
         NavigationView{
             List{
-                ForEach(viewModel.characters, id: \.self){ character in
+                ForEach(searchResults, id: \.self){ character in
                     NavigationLink(destination: CastDetailView(character: character), label:{
                         HStack{
-                            URLImage(urlString: character.img)
+                            URLImage(urlString: character.img, temp: "Photo")
                                 .scaledToFit()
                                 .frame(width: 130, height: 100)
+                                .cornerRadius(75)
                             Text(character.name)
                                 .bold()
                         }
                     })
                 }
             }
-            //            .navigationTitle("Breaking Bad Cast")
+            .searchable(text: $searchText, prompt: "Search for a character")
             .toolbar{
                 ToolbarItem(placement: .principal){
                     HStack {
@@ -77,6 +78,29 @@ struct ContentView: View {
                 viewModel.fetch()
             }
         }
+    }
+    
+    var searchResults: [Character]{
+        if searchText.isEmpty{
+            return viewModel.characters
+        }
+        else{
+            return results()
+        }
+    }
+    
+    func results() -> [Character]{
+        var names: [Character] = []
+        //var temp: [String] = []
+        //var tempStr: String
+
+        for item in viewModel.characters{
+            if !item.name.filter({ _ in item.name.contains(searchText) }).isEmpty {
+                names.append(item)
+            }
+            
+        }
+        return names
     }
 }
 
