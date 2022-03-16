@@ -10,6 +10,10 @@ import Foundation
 struct Character: Hashable, Codable{
     let name: String
     let img: String
+    let occupation: [String]
+    let status: String
+    let nickname: String
+    let appearance: [Int]
 }
 
 class ViewModel: ObservableObject {

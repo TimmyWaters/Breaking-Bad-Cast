@@ -59,7 +59,20 @@ struct ContentView: View {
                     })
                 }
             }
-            .navigationTitle("Breaking Bad Cast")
+            //            .navigationTitle("Breaking Bad Cast")
+            .toolbar{
+                ToolbarItem(placement: .principal){
+                    HStack {
+                        Image("bblogo")
+                            .resizable()
+                            .scaledToFit()
+                        Text("Cast")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color(red: 0.323, green: 0.523, blue: 0.27))
+                    }
+                }
+            }
             .onAppear{
                 viewModel.fetch()
             }
