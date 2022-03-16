@@ -60,7 +60,7 @@ struct ContentView: View {
                     })
                 }
             }
-            .searchable(text: $searchText, prompt: "Search for a character")
+            .searchable(text: $searchText, prompt: "Search for a character ork season")
             .toolbar{
                 ToolbarItem(placement: .principal){
                     HStack {
@@ -91,14 +91,15 @@ struct ContentView: View {
     
     func results() -> [Character]{
         var names: [Character] = []
-        //var temp: [String] = []
-        //var tempStr: String
-
+        var season: String
         for item in viewModel.characters{
             if !item.name.filter({ _ in item.name.contains(searchText) }).isEmpty {
                 names.append(item)
             }
-            
+            season = "\(item.appearance)"
+            if !season.filter({_ in season.contains(searchText)}).isEmpty{
+                names.append(item)
+            }
         }
         return names
     }
