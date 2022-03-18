@@ -51,6 +51,11 @@ struct CastDetailView: View {
                     }
                 }
             }
+            HStack{
+                Text("Portrayed: ")
+                    .bold()
+                Text(character.portrayed)
+            }
             Spacer()
         }
     }

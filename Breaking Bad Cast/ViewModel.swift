@@ -14,6 +14,7 @@ struct Character: Hashable, Codable{
     let status: String
     let nickname: String
     let appearance: [Int]
+    let portrayed: String
 }
 
 class ViewModel: ObservableObject {
